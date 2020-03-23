@@ -48,8 +48,11 @@
     <connectionManager id="DB2-Connections" minPoolSize="5" maxPoolSize="50"/>
     <dataSource id="PortfolioDB" jndiName="jdbc/Portfolio/PortfolioDB" connectionManagerRef="DB2-Connections" isolationLevel="TRANSACTION_READ_COMMITTED">
         <jdbcDriver>
-            <library name="DB2" description="DB2 JDBC driver jar">
+           <!-- <library name="DB2" description="DB2 JDBC driver jar">
                 <file id="db2jcc4" name="/config/db2jcc4.jar"/>
+            </library> -->
+		<library name="mariadb" description="mariadb JDBC driver jar">
+                <file id="mariadbjc24" name="/config/mariadb-java-client-2.6.0.jar"/>
             </library>
         </jdbcDriver>
         <properties.db2.jcc serverName="${env.JDBC_HOST}" portNumber="${env.JDBC_PORT}" databaseName="${env.JDBC_DB}"

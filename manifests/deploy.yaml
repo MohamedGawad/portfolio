@@ -34,34 +34,34 @@ spec:
       containers:
       - name: portfolio
 #       image: portfolio:latest # Microservice Builder
-#       image: mycluster.icp:8500/stock-trader/portfolio:latest # IBM Cloud Private
+        image: default-route-openshift-image-registry.apps.ocp4.sbm.com/stock-trader/portfolio:1.0
 #       image: registry.ng.bluemix.net/stock_trader/portfolio:latest # IBM Kubernetes Service
-        image: ibmstocktrader/portfolio:latest # Docker Hub
+       # image: ibmstocktrader/portfolio:latest # Docker Hub
         env:
           - name: JDBC_HOST
             valueFrom:
               secretKeyRef:
-                name: db2
+                name: mariadb-conn
                 key: host
           - name: JDBC_PORT
             valueFrom:
               secretKeyRef:
-                name: db2
+                name: mariadb-conn
                 key: port
           - name: JDBC_DB
             valueFrom:
               secretKeyRef:
-                name: db2
+                name: mariadb-conn
                 key: db
           - name: JDBC_ID
             valueFrom:
               secretKeyRef:
-                name: db2
+                name: mariadb-conn
                 key: id
           - name: JDBC_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: db2
+                name: mariadb-conn
                 key: pwd
           - name: MQ_ID
             valueFrom:
