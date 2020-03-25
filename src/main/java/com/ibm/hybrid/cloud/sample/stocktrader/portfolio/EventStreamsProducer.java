@@ -80,7 +80,7 @@ public class EventStreamsProducer {
         properties.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "password");
         properties.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
         String saslJaasConfig = "org.apache.kafka.common.security.plain.PlainLoginModule required username=\""
-            + USERNAME + "\" password=" + API_KEY + ";";
+            + USERNAME + "\" password=10COcM6bt6nQTj4V-aN2Y1J5jvZ8WtblTjPWyhCUvVn2;";
         properties.put(SaslConfigs.SASL_JAAS_CONFIG, saslJaasConfig);
         
         KafkaProducer<String, String> kafkaProducer = null;
