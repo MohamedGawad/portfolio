@@ -84,7 +84,7 @@
     </jmsQueue>
 -->
 
-<!-- Authentication is via JWT SSO
+ Authentication is via JWT SSO
     <basicRegistry id="basic" realm="BasicRegistry">
         <user name="admin" password="admin"/>
         <user name="stock" password="trader"/>
@@ -105,7 +105,7 @@
     <administrator-role>
     	<user>admin</user>
     </administrator-role>
--->
+
 
     <ltpa expiration="1h"/>
 
