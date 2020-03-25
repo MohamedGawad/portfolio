@@ -35,7 +35,7 @@
 
     <sslDefault sslRef="RpSSLConfig" />
 
-    <ssl id="RpSSLConfig" keyStoreRef="defaultKeyStore" />
+    <ssl id="RpSSLConfig" keyStoreRef="defaultKeyStore" trustDefaultCerts="false"/>
 
     <mpJwt id="myMpJwt" audiences="${env.JWT_AUDIENCE}" issuer="${env.JWT_ISSUER}" keyName="default" ignoreApplicationAuthMethod="false"/>
 
