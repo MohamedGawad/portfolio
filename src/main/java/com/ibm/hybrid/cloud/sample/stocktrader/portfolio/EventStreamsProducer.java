@@ -76,11 +76,14 @@ public class EventStreamsProducer {
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 //      properties.put(SslConfigs.SSL_ENDPOINT_IDENTIFICATION_ALGORITHM_CONFIG, "");
         properties.put(SslConfigs.SSL_PROTOCOL_CONFIG, "TLSv1.2");
-        properties.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, KEYSTORE);
+        // properties.put(SslConfigs.SSL_TRUSTSTORE_LOCATION_CONFIG, KEYSTORE);
         properties.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "password");
         properties.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
         String saslJaasConfig = "org.apache.kafka.common.security.plain.PlainLoginModule required username=\""
-            + USERNAME + "\" password=10COcM6bt6nQTj4V-aN2Y1J5jvZ8WtblTjPWyhCUvVn2;";
+            + USERNAME + "\" password=" + API_KEY + ";";
+
+        logger.info("saslJaasConfig: "+saslJaasConfig);
+        logger.info("saslJaasConfig: "+brokerList);
         properties.put(SaslConfigs.SASL_JAAS_CONFIG, saslJaasConfig);
         
         KafkaProducer<String, String> kafkaProducer = null;
