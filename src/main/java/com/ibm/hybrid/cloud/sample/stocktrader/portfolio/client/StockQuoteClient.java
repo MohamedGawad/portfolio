@@ -16,15 +16,17 @@
 
 package com.ibm.hybrid.cloud.sample.stocktrader.portfolio.client;
 
-import com.ibm.hybrid.cloud.sample.stocktrader.portfolio.json.Quote;
 import javax.enterprise.context.Dependent;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.GET;
 import javax.ws.rs.HeaderParam;
+import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.Path;
+
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
+
+import com.ibm.hybrid.cloud.sample.stocktrader.portfolio.json.QuoteV2;
 
 @ApplicationPath("/")
 @Path("/")
@@ -35,10 +37,10 @@ public interface StockQuoteClient {
 	@GET
 	@Path("/")
 	@Produces("application/json")
-	public Quote[] getAllCachedQuotes(@HeaderParam("Authorization") String jwt);
+	public QuoteV2[] getAllCachedQuotes(@HeaderParam("Authorization") String jwt);
 
 	@GET
 	@Path("/{symbol}")
 	@Produces("application/json")
-	public Quote getStockQuote(@HeaderParam("Authorization") String jwt, @PathParam("symbol") String symbol);
+	public QuoteV2 getStockQuote(@HeaderParam("Authorization") String jwt, @PathParam("symbol") String symbol);
 }

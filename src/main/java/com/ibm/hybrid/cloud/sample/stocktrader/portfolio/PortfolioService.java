@@ -306,11 +306,14 @@ public class PortfolioService extends Application {
 					logger.info("Calling stock-quote microservice for "+symbol);
 
 					String jwt = request.getHeader("Authorization");
-					logger.info("jwt>>>>>>>>>>>>>"+ jwt);
-					Quote quote = stockQuoteClient.getStockQuote(jwt, symbol);
+					//logger.info("jwt>>>>>>>>>>>>>"+ jwt);
+					QuoteV2 quote = stockQuoteClient.getStockQuote(jwt, symbol);
 
-					date = quote.getDate();
-					price = quote.getPrice();
+//					date = quote.getLatestTime();
+					Date now = new Date();
+					if (dateFormatter == null) dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+					date = dateFormatter.format(now);
+					price = quote.getLatestPrice();
 
 					total = shares * price;
 					
@@ -352,6 +355,7 @@ public class PortfolioService extends Application {
 					overallTotal += total;
 
 				logger.info("Adding "+symbol+" to portfolio for "+owner);
+				logger.info("stock>>>>>>>>>>>>>>>>> "+stock.toString());
 				portfolio.addStock(stock);
 			}
 			logger.info("Processed "+count+" stocks for "+owner);
