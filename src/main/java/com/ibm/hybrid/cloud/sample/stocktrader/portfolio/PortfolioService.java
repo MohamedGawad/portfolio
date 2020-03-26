@@ -306,6 +306,7 @@ public class PortfolioService extends Application {
 					logger.info("Calling stock-quote microservice for "+symbol);
 
 					String jwt = request.getHeader("Authorization");
+					logger.info("jwt>>>>>>>>>>>>>"+ jwt);
 					Quote quote = stockQuoteClient.getStockQuote(jwt, symbol);
 
 					date = quote.getDate();
