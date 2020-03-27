@@ -65,12 +65,12 @@ public class EventStreamsProducer {
         //provide defaults if not customized via environment variables
         if (USERNAME==null) USERNAME = "token";
         if (KEYSTORE==null) KEYSTORE = "/config/resources/security/certs.jks";
-
+        brokerList= "broker-5-jdykp714cj68zr5q.kafka.svc01.eu-gb.eventstreams.cloud.ibm.com:9093,broker-4-jdykp714cj68zr5q.kafka.svc01.eu-gb.eventstreams.cloud.ibm.com:9093,broker-3-jdykp714cj68zr5q.kafka.svc01.eu-gb.eventstreams.cloud.ibm.com:9093,broker-0-jdykp714cj68zr5q.kafka.svc01.eu-gb.eventstreams.cloud.ibm.com:9093,broker-1-jdykp714cj68zr5q.kafka.svc01.eu-gb.eventstreams.cloud.ibm.com:9093,broker-2-jdykp714cj68zr5q.kafka.svc01.eu-gb.eventstreams.cloud.ibm.com:9093";
         Properties properties = new Properties();
         properties.put(CommonClientConfigs.BOOTSTRAP_SERVERS_CONFIG, brokerList);
         properties.put(CommonClientConfigs.SECURITY_PROTOCOL_CONFIG, "SASL_SSL");
         properties.put(CommonClientConfigs.CONNECTIONS_MAX_IDLE_MS_CONFIG, 10000);
-        properties.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 4000);
+        properties.put(ProducerConfig.MAX_BLOCK_MS_CONFIG, 10000);
         properties.put(ProducerConfig.RETRIES_CONFIG, 0);
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -80,7 +80,7 @@ public class EventStreamsProducer {
         properties.put(SslConfigs.SSL_TRUSTSTORE_PASSWORD_CONFIG, "password");
         properties.put(SaslConfigs.SASL_MECHANISM, "PLAIN");
         String saslJaasConfig = "org.apache.kafka.common.security.plain.PlainLoginModule required username=\""
-            + USERNAME + "\" password=" + API_KEY + ";";
+            + USERNAME + "\" password=\"" + API_KEY + "\";";
 
         logger.info("saslJaasConfig: "+saslJaasConfig);
         logger.info("saslJaasConfig: "+brokerList);

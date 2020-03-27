@@ -681,7 +681,7 @@ public class PortfolioService extends Application {
 			JsonObject stock = portfolio.getStocks();
 
 			if (stock != null) { //rather than calling stock-quote again, get it from the portfolio we just built
-				price = stock.getJsonNumber("price").doubleValue();
+				price = stock.getJsonNumber("price")==null?0:stock.getJsonNumber("price").doubleValue();
 			} else {
 				logger.warning("Unable to get the stock price.  Skipping sending the StockPurchase to Kafka");
 				return; //nothing to send if we can't look up the stock price
